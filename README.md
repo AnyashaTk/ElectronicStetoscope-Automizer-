@@ -1,2 +1,2 @@
-# ElectronicStetoscope-Automizer-
+# ElectronicStetoscopeAutomizer
 Описательная часть проекта по разпознаванию разных классов патологий выявляемых на основе сердечного ритма и пульса человека
