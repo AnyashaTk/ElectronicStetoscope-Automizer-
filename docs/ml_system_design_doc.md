@@ -1,5 +1,5 @@
 # ML System Design Doc - [RU]
-## Дизайн ML системы - Electronic Stetoscope Automizer MVP 1.0.0
+## Дизайн ML системы - Electronic Stetoscope Automizer MVP 0.1.0
 
 *Автоматизация обнаружения патологий сердца с помощью данных с электронного стетоскопа*   
 
