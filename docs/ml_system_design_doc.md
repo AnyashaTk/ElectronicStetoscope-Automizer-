@@ -45,4 +45,4 @@
 
 Бейзлайн планируется реализовать следующим образом:
 
-<image src="/artefacts/baseline.png" alt="Baseline scheme">
+<image src="/docs/images/baseline.png" alt="Baseline scheme">
