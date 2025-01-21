@@ -47,10 +47,3 @@ repos:
     hooks:
       - id: python-use-type-annotations
       - id: python-check-blanket-noqa
-
-  -   repo: https://github.com/Yelp/detect-secrets
-      rev: v1.4.0
-      hooks:
-      -   id: detect-secrets
-          args: []
-          exclude: .pre-commit-config.yaml
