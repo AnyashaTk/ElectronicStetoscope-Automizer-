@@ -21,6 +21,10 @@
 > * artefacts # Директория со всеми артефактами для описания проекта
 > * docs
 > * * ml_system_design_doc.md # Дизайн документ проекта
+> * app
+> * * main.py
+> * notebooks
+> * * eda0.ipynb # первая проведенная версия eda без обработки данных, они хранятся локально пока
 > * .pre-commit-config.yaml # pre-commit файл проекта
 > * poetry.lock # poetry файл о проекте
 > * pyproject.toml # poetry файл о проекте
