@@ -15,16 +15,18 @@ class BinaryModels:
         data_scaled = self.binary_scaler.transform(data)
         y_pred = self.binary_model.predict(data_scaled)
         if y_pred[0] == 1:
-            return "normal"
+            return "Проблем с сердцем не обнаружено"
         elif y_pred[0] == 0:
-            return "patology"
+            return "Обнаружена патология, рекомендуется провести дополнительные исследования для более точного диагноза"
 
 
 class MultiModels:
     def __init__(self, model_name=""):
         self.multi_scaler = joblib.load("./app/models/multilabel_standard_scaler.pkl")
 
-        multi_model_path = f"./app/models/multilabel_cdpd_cda_{model_name}_best_model.pkl"
+        multi_model_path = (
+            f"./app/models/multilabel_cdpd_cda_{model_name}_best_model.pkl"
+        )
 
         self.multi_model = joblib.load(multi_model_path)
 
@@ -33,18 +35,18 @@ class MultiModels:
         data_scaled = self.multi_scaler.transform(data)
         y_pred = self.multi_model.predict(data_scaled)
 
-        patology_text = " patology(ies), be careful!"
+        patology_text = ", рекомендуется провести дополнительные исследования для более точного диагноза"
         res = []
         if y_pred[0][0] == 1:
-            return "norm"
+            return "Проблем с сердцем не обнаружено"
         else:
             if y_pred[0][1] == 1:
-                res.append("MK")
+                res.append("Mитрального клапана")
             if y_pred[0][2] == 1:
-                res.append("AK")
+                res.append("Aортального клапана")
             if y_pred[0][3] == 1:
-                res.append("other")
-            return " ".join(res) + patology_text
+                res.append("Трикуспидального или легочного клапанов")
+            return "Обнаружена " + ", ".join(res) + patology_text
 
 
 # streamlit run app/main.py

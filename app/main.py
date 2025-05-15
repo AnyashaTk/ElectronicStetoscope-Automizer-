@@ -31,7 +31,9 @@ def main():
     }
 
     st.title("Классификатор биения сердца")
-    st.write("Загрузите запись с электронного фонендоскопа для получения рекомендаций")
+    st.write(
+        "Загрузите записьс электронного фонендоскопа и выберите параметры анализа для получения рекомендаций"
+    )
 
     models_list = ["GradientBoosting", "RandomForest", "LogisticRegression"]
 
@@ -47,14 +49,20 @@ def main():
 
     # Загрузка файла (сохраняется в сессии)
     st.session_state.uploaded_file = st.file_uploader(
-        "Выберите аудио в формате wav", type=["wav"], key="file_uploader"  # Уникальный ключ для виджета
+        "Выберите аудио в формате wav",
+        type=["wav"],
+        key="file_uploader",  # Уникальный ключ для виджета
     )
 
     # Выбор задачи (сохраняется в сессии)
-    st.session_state.task_type = st.selectbox("Выберите задачу", list(models.keys()), key="task_selectbox")
+    st.session_state.task_type = st.selectbox(
+        "Выберите задачу", list(models.keys()), key="task_selectbox"
+    )
 
     # Выбор модели (сохраняется в сессии)
-    st.session_state.model_name = st.selectbox("Выберите модель", models_list, key="model_selectbox")
+    st.session_state.model_name = st.selectbox(
+        "Выберите модель", models_list, key="model_selectbox"
+    )
 
     # Если файл загружен
     if st.session_state.uploaded_file is not None:
@@ -63,7 +71,7 @@ def main():
         with open(file_path, "wb") as f:
             f.write(st.session_state.uploaded_file.getbuffer())
 
-        st.success(f"Файл {st.session_state.uploaded_file.name} успешно загружен!")
+        st.success(f"Файл {st.session_state.uploaded_file.name} успешно загружен")
 
         # Кнопка "Получить результат" (работает только для текущего пользователя)
         if st.button("Получить результат", key="analyze_button"):
@@ -73,7 +81,9 @@ def main():
             features = np.mean(mfcc.T, axis=0).reshape(1, -1)
 
             # Получаем результат и сохраняем в сессию
-            st.session_state.result = models[st.session_state.task_type][st.session_state.model_name](features)
+            st.session_state.result = models[st.session_state.task_type][
+                st.session_state.model_name
+            ](features)
 
         # Выводим результат (если он есть в сессии)
         if st.session_state.result is not None:
