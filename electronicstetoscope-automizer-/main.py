@@ -31,9 +31,7 @@ def main():
     }
 
     st.title("Классификатор биения сердца")
-    st.write(
-        "Загрузите записьс электронного фонендоскопа и выберите параметры анализа для получения рекомендаций"
-    )
+    st.write("Загрузите записьс электронного фонендоскопа и выберите параметры анализа для получения рекомендаций")
 
     models_list = ["GradientBoosting", "RandomForest", "LogisticRegression"]
 
@@ -55,14 +53,10 @@ def main():
     )
 
     # Выбор задачи (сохраняется в сессии)
-    st.session_state.task_type = st.selectbox(
-        "Выберите задачу", list(models.keys()), key="task_selectbox"
-    )
+    st.session_state.task_type = st.selectbox("Выберите задачу", list(models.keys()), key="task_selectbox")
 
     # Выбор модели (сохраняется в сессии)
-    st.session_state.model_name = st.selectbox(
-        "Выберите модель", models_list, key="model_selectbox"
-    )
+    st.session_state.model_name = st.selectbox("Выберите модель", models_list, key="model_selectbox")
 
     # Если файл загружен
     if st.session_state.uploaded_file is not None:
@@ -81,9 +75,7 @@ def main():
             features = np.mean(mfcc.T, axis=0).reshape(1, -1)
 
             # Получаем результат и сохраняем в сессию
-            st.session_state.result = models[st.session_state.task_type][
-                st.session_state.model_name
-            ](features)
+            st.session_state.result = models[st.session_state.task_type][st.session_state.model_name](features)
 
         # Выводим результат (если он есть в сессии)
         if st.session_state.result is not None:

@@ -4,9 +4,9 @@ import numpy as np
 
 class BinaryModels:
     def __init__(self, model_name=""):
-        self.binary_scaler = joblib.load("./app/models/binary_standard_scaler.pkl")
+        self.binary_scaler = joblib.load("./electronicstetoscope-automizer-/models/binary_standard_scaler.pkl")
 
-        binary_model_path = f"./app/models/binary_cdpd_cda_{model_name}_best_model.pkl"
+        binary_model_path = f"./electronicstetoscope-automizer-/models/binary_cdpd_cda_{model_name}_best_model.pkl"
 
         self.binary_model = joblib.load(binary_model_path)
 
@@ -17,16 +17,16 @@ class BinaryModels:
         if y_pred[0] == 1:
             return "Проблем с сердцем не обнаружено"
         elif y_pred[0] == 0:
-            return "Обнаружена патология, рекомендуется провести дополнительные исследования для более точного диагноза"
+            return (
+                "Обнаружена патология, рекомендуется провести дополнительные исследования для более точного диагноза"
+            )
 
 
 class MultiModels:
     def __init__(self, model_name=""):
-        self.multi_scaler = joblib.load("./app/models/multilabel_standard_scaler.pkl")
+        self.multi_scaler = joblib.load("./electronicstetoscope-automizer-/models/multilabel_standard_scaler.pkl")
 
-        multi_model_path = (
-            f"./app/models/multilabel_cdpd_cda_{model_name}_best_model.pkl"
-        )
+        multi_model_path = f"./electronicstetoscope-automizer-/models/multilabel_cdpd_cda_{model_name}_best_model.pkl"
 
         self.multi_model = joblib.load(multi_model_path)
 
@@ -49,7 +49,7 @@ class MultiModels:
             return "Обнаружена " + ", ".join(res) + patology_text
 
 
-# streamlit run app/main.py
+# streamlit run electronicstetoscope-automizer-/main.py
 if __name__ == "__main__":
     bm = BinaryModels("GradientBoosting")
     mm = MultiModels("GradientBoosting")
