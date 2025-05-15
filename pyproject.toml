@@ -18,7 +18,7 @@ librosa = "0.9.2"
 
 [tool.poetry.packages]
 # Укажите папку с исходным кодом
-include = "electronicstetoscope-automizer-"
+include = ["electronicstetoscope-automizer-"]
 
 [tool.poetry.group.dev.dependencies]
 pre-commit = "^4.0.1"
